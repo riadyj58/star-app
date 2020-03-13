@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'home_screen.dart';
-
-import 'package:star_app/models/movie_model.dart';
+import 'package:star_app/models/video_model.dart';
 import 'package:star_app/screens/movie_screen.dart';
 import 'package:star_app/widgets/content_scroll.dart';
+import 'package:star_app/models/balance_style.dart';
 
 class Homebody extends StatefulWidget {
   @override
@@ -40,7 +38,7 @@ class _HomebodyState extends State<Homebody> {
         onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => MovieScreen(movie: movies[index]),
+            builder: (_) => MovieScreen(videos: videos[index]),
           ),
         ),
         child: Stack(
@@ -60,11 +58,11 @@ class _HomebodyState extends State<Homebody> {
                 ),
                 child: Center(
                   child: Hero(
-                    tag: movies[index].imageUrl,
+                    tag: videos[index].imageUrl,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10.0),
                       child: Image(
-                        image: AssetImage(movies[index].imageUrl),
+                        image: AssetImage(videos[index].imageUrl),
                         height: 220.0,
                         fit: BoxFit.cover,
                       ),
@@ -78,12 +76,22 @@ class _HomebodyState extends State<Homebody> {
               bottom: 40.0,
               child: Container(
                 width: 250.0,
-                child: Text(
-                  movies[index].title.toUpperCase(),
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 5),
+                  child: Text(
+                    videos[index].title.toUpperCase(),
+                    style: TextStyle(
+                      shadows: [
+                        Shadow(
+                          blurRadius: 10.0,
+                          color: Colors.black,
+                          offset: Offset(5.0, 5.0),
+                        )
+                      ],
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -96,14 +104,107 @@ class _HomebodyState extends State<Homebody> {
 
   @override
   Widget build(BuildContext context) {
+    //BALANCE SECTION
     return ListView(
       children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(left: 20.0, right: 20, top: 20),
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: 40,
+                decoration: boxdecoration,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        'James',
+                        style: textstyle_bold,
+                      ),
+                      Text(
+                        'Rp. 200.000',
+                        style: textstyle_bold,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                height: 100,
+                decoration: boxdecoration_bottom,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        FlatButton(
+                          onPressed: () {},
+                          child: Column(
+                            children: <Widget>[
+                              Icon(
+                                Icons.add_box,
+                                color: Colors.white,
+                                size: 40,
+                              ),
+                              Text(
+                                'Top up',
+                                style: textstyle,
+                              )
+                            ],
+                          ),
+                        ),
+                        FlatButton(
+                          onPressed: () {},
+                          child: Column(
+                            children: <Widget>[
+                              Icon(
+                                Icons.remove_red_eye,
+                                color: Colors.white,
+                                size: 40,
+                              ),
+                              Text(
+                                'Watch History',
+                                style: textstyle,
+                              )
+                            ],
+                          ),
+                        ),
+                        FlatButton(
+                          onPressed: () {},
+                          child: Column(
+                            children: <Widget>[
+                              Icon(
+                                Icons.list,
+                                color: Colors.white,
+                                size: 40,
+                              ),
+                              Text(
+                                'Transaction',
+                                style: textstyle,
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
         Container(
           height: 280.0,
           width: double.infinity,
           child: PageView.builder(
             controller: _pageController,
-            itemCount: movies.length,
+            itemCount: videos.length,
             itemBuilder: (BuildContext context, int index) {
               return _movieSelector(index);
             },
@@ -154,17 +255,17 @@ class _HomebodyState extends State<Homebody> {
         ),
         SizedBox(height: 20.0),
         ContentScroll(
-          images: myList,
-          title: 'My List',
-          imageHeight: 250.0,
-          imageWidth: 150.0,
+          videos: videos,
+          title: 'Latest',
+          imageHeight: 315.0,
+          imageWidth: 250.0,
         ),
         SizedBox(height: 10.0),
         ContentScroll(
-          images: popular,
+          videos: videos,
           title: 'Popular',
-          imageHeight: 250.0,
-          imageWidth: 150.0,
+          imageHeight: 315.0,
+          imageWidth: 250.0,
         ),
       ],
     );

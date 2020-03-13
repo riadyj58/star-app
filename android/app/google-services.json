@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "686966422875",
+    "firebase_url": "https://stardb-317f3.firebaseio.com",
+    "project_id": "stardb-317f3",
+    "storage_bucket": "stardb-317f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686966422875:android:e73b6359ccf0775b62ae7e",
+        "android_client_info": {
+          "package_name": "org.starexodus.star_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686966422875-8l8ocbdpft57d3hgghggj4b7f9rutcg5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBliAx9GFp7uofArLPp0r4lH4hhz7nUOfI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686966422875-8l8ocbdpft57d3hgghggj4b7f9rutcg5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

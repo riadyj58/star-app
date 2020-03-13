@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:star_app/models/movie_model.dart';
-import 'package:star_app/screens/movie_screen.dart';
-import 'package:star_app/widgets/content_scroll.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'bodyhome.dart';
 
@@ -40,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: _pageOption[_selectedPage],
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         color: Colors.black,
         animationDuration: Duration(milliseconds: 200),
         animationCurve: Curves.bounceInOut,

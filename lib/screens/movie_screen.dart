@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:star_app/models/movie_model.dart';
+import 'package:star_app/models/video_model.dart';
+import 'package:star_app/screens/video_screen.dart';
 import 'package:star_app/widgets/circular_clipper.dart';
 import 'package:star_app/widgets/content_scroll.dart';
 
 class MovieScreen extends StatefulWidget {
-  final Movie movie;
+  final Video videos;
 
-  MovieScreen({this.movie});
+  MovieScreen({this.videos});
 
   @override
   _MovieScreenState createState() => _MovieScreenState();
@@ -24,7 +25,7 @@ class _MovieScreenState extends State<MovieScreen> {
               Container(
                 transform: Matrix4.translationValues(0.0, -50.0, 0.0),
                 child: Hero(
-                  tag: widget.movie.imageUrl,
+                  tag: widget.videos.imageUrl,
                   child: ClipShadowPath(
                     clipper: CircularClipper(),
                     shadow: Shadow(blurRadius: 20.0),
@@ -32,7 +33,7 @@ class _MovieScreenState extends State<MovieScreen> {
                       height: 400.0,
                       width: double.infinity,
                       fit: BoxFit.cover,
-                      image: AssetImage(widget.movie.imageUrl),
+                      image: AssetImage(widget.videos.imageUrl),
                     ),
                   ),
                 ),
@@ -68,7 +69,14 @@ class _MovieScreenState extends State<MovieScreen> {
                   child: RawMaterialButton(
                     padding: EdgeInsets.all(10.0),
                     elevation: 12.0,
-                    onPressed: () => print('Play Video'),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => VideoScreen(),
+                        ),
+                      );
+                    },
                     shape: CircleBorder(),
                     fillColor: Colors.white,
                     child: Icon(
@@ -107,7 +115,7 @@ class _MovieScreenState extends State<MovieScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  widget.movie.title.toUpperCase(),
+                  widget.videos.title.toUpperCase(),
                   style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
@@ -116,7 +124,7 @@ class _MovieScreenState extends State<MovieScreen> {
                 ),
                 SizedBox(height: 10.0),
                 Text(
-                  widget.movie.categories,
+                  widget.videos.categories,
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 16.0,
@@ -142,7 +150,7 @@ class _MovieScreenState extends State<MovieScreen> {
                         ),
                         SizedBox(height: 2.0),
                         Text(
-                          widget.movie.year.toString(),
+                          widget.videos.year.toString(),
                           style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.w600,
@@ -161,7 +169,7 @@ class _MovieScreenState extends State<MovieScreen> {
                         ),
                         SizedBox(height: 2.0),
                         Text(
-                          widget.movie.country.toUpperCase(),
+                          widget.videos.country.toUpperCase(),
                           style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.w600,
@@ -180,7 +188,7 @@ class _MovieScreenState extends State<MovieScreen> {
                         ),
                         SizedBox(height: 2.0),
                         Text(
-                          '${widget.movie.length} min',
+                          '${widget.videos.length} min',
                           style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.w600,
@@ -195,7 +203,7 @@ class _MovieScreenState extends State<MovieScreen> {
                   height: 120.0,
                   child: SingleChildScrollView(
                     child: Text(
-                      widget.movie.description,
+                      widget.videos.description,
                       style: TextStyle(
                         color: Colors.black54,
                       ),
@@ -204,12 +212,6 @@ class _MovieScreenState extends State<MovieScreen> {
                 ),
               ],
             ),
-          ),
-          ContentScroll(
-            images: widget.movie.screenshots,
-            title: 'Screenshots',
-            imageHeight: 200.0,
-            imageWidth: 250.0,
           ),
         ],
       ),
